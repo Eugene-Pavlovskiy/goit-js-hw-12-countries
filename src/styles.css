@@ -10,8 +10,8 @@ section {
 }
 
 .container {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .countries-flag {
@@ -51,6 +51,14 @@ p {
     background: #d2d6c6;
 }
 
+.articles {
+  padding-left: 0px;
+}
+
+.list__countries {
+  padding-left: 20px;
+}
+
 .list__countries-item {
   display: flex;
   align-items: center;
@@ -70,7 +78,7 @@ p {
 }
 
 .country__wrapper {
-  display: flex;
+  /* display: flex; */
   justify-content: space-evenly;
   align-items: center;
 }
