@@ -9,9 +9,6 @@ function fetchCountries(searchQuery) {
     } else {
       throw Error(response.status);
     }
-  }).then(data => {
-    data.length = 10
-    return data;
   })
 
 }

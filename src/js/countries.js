@@ -1,5 +1,6 @@
 import countriesTpl from "../templates/countries.hbs";
-import fetchCountries from './fetchCountries'
+import listCountriesTpl from '../templates/listCountries.hbs';
+import fetchCountries from './fetchCountries';
 import debounce from "lodash.debounce";
 import getRefs from './refs';
 import { alert, error, defaultModules } from "@pnotify/core/dist/PNotify.js";
@@ -11,9 +12,20 @@ const refs = getRefs();
 refs.searchForm.addEventListener('input', debounce(onSearch, 500));
  
 function onSearch(e) {
-  e.preventDefault();
   refs.articlesContainer.innerHTML = '';
-   fetchCountries(e.target.value).then(appendCountriesMarkup).catch(searchError).finally(()=> (e.target.value = ''));
+   fetchCountries(e.target.value).then(appendCountriesMarkup).catch(searchError);
+}
+
+function appendCountriesMarkup(countries) {
+  if (countries.length === 1) {
+    return refs.articlesContainer.insertAdjacentHTML('beforeend', countriesTpl(countries));
+  }
+  if (countries.length > 10) {
+    return error({ text: 'Error! Please enter a more query!'});
+  }
+  if (countries.length > 1 && countries.length <= 10) {
+    return refs.articlesContainer.insertAdjacentHTML('beforeend', listCountriesTpl(countries));
+  }
 }
 
 function searchError(err) {
@@ -21,8 +33,4 @@ function searchError(err) {
     error({ text: 'Too many matches found.Please enter a more specific query!' });
   }
 
-}
-
-function appendCountriesMarkup(countries) {
-  refs.articlesContainer.insertAdjacentHTML('beforeend', countriesTpl(countries))
 }

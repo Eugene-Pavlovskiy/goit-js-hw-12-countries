@@ -50,3 +50,27 @@ p {
     border-radius: 6px;
     background: #d2d6c6;
 }
+
+.list__countries-item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.list__countries-item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.list__countries-img {
+  margin-right: 10px;
+}
+
+.list__countries-name {
+  margin-bottom: 0px;
+}
+
+.country__wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
